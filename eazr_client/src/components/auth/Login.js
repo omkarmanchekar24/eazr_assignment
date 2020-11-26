@@ -12,8 +12,8 @@ import {login} from '../../actions/authActions';
 
 class Login extends Component {
   state = {
-    email: 'subhash@gmail.com',
-    password: 'ssssss',
+    email: 'omkar24@gmail.com',
+    password: '222222',
     errors: {},
     loading: {},
   };
