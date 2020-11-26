@@ -1,4 +1,4 @@
 /node_modules
-/client/node_modules
+/eazr_client/node_modules
 package-lock.json
-/client/package-lock.json
+/eazr_client/package-lock.json
