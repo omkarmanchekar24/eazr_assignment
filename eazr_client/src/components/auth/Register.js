@@ -13,9 +13,9 @@ import {register} from '../../actions/authActions';
 
 class Register extends Component {
   state = {
-    name: 'darshan',
-    email: 'darshan@gmail.com',
-    password: 'dddddd',
+    name: '',
+    email: '',
+    password: '',
     loading: false,
     errors: {},
   };
