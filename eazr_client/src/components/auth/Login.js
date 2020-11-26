@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Dimensions} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import {connect} from 'react-redux';
 
 //Components
 import Input from '../common/Input';
 import Button from '../common/Button';
 
+//Actions
+import {login} from '../../actions/authActions';
+
 class Login extends Component {
   state = {
-    email: '',
-    Password: '',
+    email: 'subhash@gmail.com',
+    password: 'ssssss',
+    errors: {},
+    loading: {},
   };
 
   onChange = (prop, val) => {
@@ -18,22 +24,54 @@ class Login extends Component {
     });
   };
 
+  onLogin = () => {
+    const {email, password} = this.state;
+    this.props.login({email, password});
+  };
+
+  static getDerivedStateFromProps(nextProps, nextState) {
+    if (nextProps.loading) {
+      return {
+        loading: true,
+        errors: {},
+      };
+    } else if (nextProps.errors) {
+      return {
+        loading: false,
+        errors: nextProps.errors,
+      };
+    }
+    return null;
+  }
+
   render() {
+    const {email, password, loading, errors} = this.state;
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <View style={styles.formContainer}>
           <Text style={styles.title}>Login</Text>
           <Input
             placeholder="Email"
+            value={email}
             onChangeText={this.onChange}
             prop="email"
+            editable={!loading}
+            error={errors.email}
           />
           <Input
             placeholder="Password"
+            value={password}
             onChangeText={this.onChange}
             prop="password"
+            editable={!loading}
+            error={errors.password}
           />
-          <Button text="Login" onPress={() => {}} loading={false} />
+          <Button
+            text="Login"
+            onPress={this.onLogin.bind(this)}
+            loading={loading}
+          />
         </View>
         <View style={styles.buttonContainer}>
           <Button
@@ -85,4 +123,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    errors: state.login.errors,
+    loading: state.login.loading,
+  };
+};
+
+export default connect(mapStateToProps, {login})(Login);

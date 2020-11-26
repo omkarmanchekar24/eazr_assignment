@@ -13,9 +13,9 @@ import {register} from '../../actions/authActions';
 
 class Register extends Component {
   state = {
-    name: '',
-    email: '',
-    Password: '',
+    name: 'darshan',
+    email: 'darshan@gmail.com',
+    password: 'dddddd',
     loading: false,
     errors: {},
   };
@@ -47,7 +47,7 @@ class Register extends Component {
   }
 
   render() {
-    const {loading, errors} = this.state;
+    const {name, email, password, loading, errors} = this.state;
     console.log(this.state);
     return (
       <View style={styles.container}>
@@ -55,6 +55,7 @@ class Register extends Component {
           <Text style={styles.title}>Register</Text>
           <Input
             placeholder="Name"
+            value={name}
             onChangeText={this.onChange}
             prop="name"
             error={errors.name}
@@ -62,6 +63,7 @@ class Register extends Component {
           />
           <Input
             placeholder="Email"
+            value={email}
             onChangeText={this.onChange}
             prop="email"
             error={errors.email}
@@ -70,6 +72,7 @@ class Register extends Component {
 
           <Input
             placeholder="Password"
+            value={password}
             onChangeText={this.onChange}
             prop="password"
             error={errors.password}

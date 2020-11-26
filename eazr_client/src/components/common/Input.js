@@ -4,12 +4,13 @@ import {View, TextInput, Text} from 'react-native';
 //Components
 import If from './If';
 
-const Input = ({placeholder, onChangeText, prop, error, editable}) => {
+const Input = ({placeholder, onChangeText, prop, error, editable, value}) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          value={value}
           placeholder={placeholder}
           placeholderTextColor="#a0a1b0"
           onChangeText={(text) => onChangeText(prop, text)}
